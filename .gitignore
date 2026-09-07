@@ -1,8 +1,3 @@
-# Environment variables and API secrets
-.env
-.env.local
-*.env
-
 # Virtual environments
 .venv/
 venv/
@@ -26,11 +21,7 @@ output/
 scratch/
 .solcx/
 
-# Sample photos (for privacy & repository size)
-samples/*.jpg
-samples/*.jpeg
-samples/*.png
-!samples/README.md
+
 
 # Operating System files
 .DS_Store
