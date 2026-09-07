@@ -40,22 +40,6 @@ $ python main.py --image samples/photo.jpg
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    A[Input photo] --> B[Stage 1<br/>detect.py<br/>dlib / DeepFace / OpenCV]
-    B -->|128-d embedding<br/>face crop| C[SHA-256 image hash<br/>SHA-256 embedding hash]
-    B --> D[Stage 2<br/>search.py]
-    D -->|upload| E[(Temp image host<br/>litterbox / tmpfiles / 0x0)]
-    E -->|public URL| F[SerpApi Google Lens<br/>SerpApi Yandex<br/>Bing Visual Search]
-    F -->|ranked matches| G{Social post<br/>found?}
-    G -->|no| X[exit 3 - nothing anchored]
-    G -->|yes| H[Stage 3<br/>chain.py - web3.py]
-    C --> H
-    H -->|recordMatch()| I[FaceMatchRegistry.sol<br/>Polygon Amoy / Sepolia]
-    I --> J[Tx hash + explorer link<br/>JSON report]
-    J --> K[scripts/verify.py<br/>re-hash & compare]
-```
-
 | Stage | Module | What it does |
 |---|---|---|
 | 1 Face | `faceid/detect.py` | Detects the most prominent face, produces a 128-d embedding (`face_recognition`/dlib, falls back to DeepFace, then OpenCV Haar), saves a padded crop, computes SHA-256 of the image bytes and of the rounded embedding. |
