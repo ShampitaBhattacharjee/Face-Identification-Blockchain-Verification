@@ -1,0 +1,19 @@
+[project]
+name = "face-id-blockchain-verification"
+version = "1.0.0"
+description = "Detect a face, find a real matching social-media post via reverse-image search, anchor the match on a public blockchain."
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+exclude = ["output", "deployments", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"

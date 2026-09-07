@@ -1,0 +1,56 @@
+stages:
+  - lint
+  - test
+  - build
+
+default:
+  image: python:3.11-slim
+  cache:
+    key: pip-$CI_COMMIT_REF_SLUG
+    paths:
+      - .cache/pip
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+lint:
+  stage: lint
+  script:
+    - pip install ruff
+    - ruff check .
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements-dev.txt
+    - pytest --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
+compile-contract:
+  stage: build
+  script:
+    - pip install -r requirements-dev.txt py-solc-x
+    - python scripts/deploy.py --compile-only
+  artifacts:
+    paths:
+      - contracts/FaceMatchRegistry.abi.json
+    expire_in: 1 week
+  # solc binary download can be flaky on shared runners; do not block the pipeline
+  allow_failure: true
+
+docker:
+  stage: build
+  image: docker:27
+  services:
+    - docker:27-dind
+  script:
+    - docker build -t face-id-blockchain-verification:$CI_COMMIT_SHORT_SHA .
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true

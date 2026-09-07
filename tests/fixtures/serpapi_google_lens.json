@@ -1,0 +1,55 @@
+{
+  "search_metadata": {
+    "status": "Success",
+    "google_lens_url": "https://lens.google.com/uploadbyurl?url=https://example.invalid/photo.jpg"
+  },
+  "search_parameters": {
+    "engine": "google_lens",
+    "url": "https://example.invalid/photo.jpg",
+    "type": "visual_matches"
+  },
+  "visual_matches": [
+    {
+      "position": 1,
+      "title": "Keynote recap - TechNews",
+      "link": "https://www.technews.example/article/keynote-recap",
+      "source": "technews.example",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=a"
+    },
+    {
+      "position": 2,
+      "title": "Jane Doe on X: \"Excited to speak at DevConf today!\"",
+      "link": "https://x.com/janedoe/status/1234567890123456789",
+      "source": "X",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=b"
+    },
+    {
+      "position": 3,
+      "title": "Jane Doe (@janedoe) - Instagram photos and videos",
+      "link": "https://www.instagram.com/janedoe/",
+      "source": "Instagram",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=c"
+    },
+    {
+      "position": 4,
+      "title": "Jane Doe on Instagram: \"Backstage at DevConf\"",
+      "link": "https://www.instagram.com/p/CxYz123AbC/",
+      "source": "Instagram",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=d"
+    },
+    {
+      "position": 5,
+      "title": "Speaker profile - DevConf",
+      "link": "https://devconf.example/speakers/jane-doe",
+      "source": "devconf.example",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=e"
+    },
+    {
+      "position": 6,
+      "title": "Duplicate of the X post",
+      "link": "https://x.com/janedoe/status/1234567890123456789/",
+      "source": "X",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=f"
+    }
+  ]
+}
