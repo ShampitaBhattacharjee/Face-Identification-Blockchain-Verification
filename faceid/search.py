@@ -151,7 +151,7 @@ def rank_matches(matches: Iterable[Match]) -> list[Match]:
     return sorted(unique, key=lambda m: (-m.score, m.position))
 
 
-# --------------------------------------------------------------------------- parsers
+#  parsers
 
 
 def parse_google_lens(payload: dict[str, Any], provider: str = "google_lens") -> list[Match]:
@@ -237,7 +237,7 @@ def parse_bing_visual_search(payload: dict[str, Any], provider: str = "bing") ->
     return matches
 
 
-# --------------------------------------------------------------------------- upload
+#  upload
 
 
 class ImageHost:
@@ -322,7 +322,7 @@ class ImageHost:
         return url
 
 
-# --------------------------------------------------------------------------- searcher
+# searcher
 
 
 @dataclass
@@ -368,7 +368,7 @@ class ReverseImageSearcher:
         self.session.headers.setdefault("User-Agent", USER_AGENT)
         self.image_host = ImageHost(self.session, preferred_host)
 
-    # -- public API ---------------------------------------------------------
+    #  public API 
 
     def search(
         self,
@@ -431,7 +431,7 @@ class ReverseImageSearcher:
             raw_files=raws,
         )
 
-    # -- providers ----------------------------------------------------------
+    #  providers 
 
     def _serpapi(self, params: dict[str, str]) -> dict[str, Any]:
         key = (self.serpapi_key or "").strip()
