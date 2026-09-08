@@ -6,7 +6,7 @@ requests>=2.31
 python-dotenv>=1.0
 rich>=13.7
 
-# Face encoding (dlib build needs cmake + a C++ compiler; see README "Installing dlib")
+# Face encoding
 dlib>=19.24
 face_recognition>=1.3.0
 
