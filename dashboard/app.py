@@ -1,4 +1,4 @@
-"""Optional Streamlit dashboard. Thin UI over the exact same library the CLI uses.
+"""Streamlit dashboard. Thin UI over the exact same library the CLI uses.
 
 Run:  streamlit run dashboard/app.py
 """
