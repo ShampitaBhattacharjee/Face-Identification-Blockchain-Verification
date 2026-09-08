@@ -137,7 +137,7 @@ class ChainClient:
             )
         self.account = self.w3.eth.account.from_key(private_key) if private_key else None
 
-    # -- account ----------------------------------------------------------
+    #  account 
 
     @property
     def address(self) -> str:
@@ -148,7 +148,7 @@ class ChainClient:
     def balance(self) -> float:
         return float(self.w3.from_wei(self.w3.eth.get_balance(self.address), "ether"))
 
-    # -- transaction plumbing -----------------------------------------------
+    #  transaction plumbing 
 
     def _fees(self) -> dict[str, int]:
         latest = self.w3.eth.get_block("latest")
@@ -196,7 +196,7 @@ class ChainClient:
             **extra,
         )
 
-    # -- contract mode ------------------------------------------------------
+    #  contract mode 
 
     def deploy(self, abi: list[dict[str, Any]], bytecode: str) -> tuple[str, Any]:
         contract = self.w3.eth.contract(abi=abi, bytecode=bytecode)
@@ -249,7 +249,7 @@ class ChainClient:
             "submitter": rec[5],
         }
 
-    # -- calldata mode ------------------------------------------------------
+    #  calldata mode 
 
     def anchor_calldata(self, payload: bytes) -> AnchorResult:
         tx = {**self._base_params(), "to": self.address, "value": 0, "data": Web3.to_hex(payload)}
