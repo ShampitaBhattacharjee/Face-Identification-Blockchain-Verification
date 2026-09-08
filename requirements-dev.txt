@@ -1,4 +1,4 @@
-# Lightweight set used by CI (no dlib build) - enough to import the library and run tests
+
 numpy>=1.24
 requests>=2.31
 python-dotenv>=1.0
