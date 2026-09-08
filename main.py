@@ -98,7 +98,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return p.parse_args(argv)
 
 
-# --------------------------------------------------------------------------- display
+# display
 
 
 def banner(args: argparse.Namespace) -> None:
@@ -171,7 +171,7 @@ def print_summary(face: FaceResult, chosen: Match, anchor, report_path: Path) ->
     console.print(Panel("\n".join(lines), title="Pipeline complete", border_style="green"))
 
 
-# --------------------------------------------------------------------------- stages
+# stages
 
 
 def anchor_match(args: argparse.Namespace, settings: Settings, face: FaceResult, match: Match):
@@ -235,7 +235,7 @@ def main(argv: list[str] | None = None) -> int:
         "args": {k: str(v) for k, v in vars(args).items()},
     }
 
-    # ---- Stage 1 -------------------------------------------------------
+    #  Stage 1 
     console.rule("[bold cyan]Stage 1/3 - Face detection & encoding")
     try:
         with console.status("Detecting and encoding face ..."):
@@ -249,7 +249,7 @@ def main(argv: list[str] | None = None) -> int:
     print_face(face)
     report["face"] = face.to_dict()
 
-    # ---- Stage 2 -------------------------------------------------------
+    #  Stage 2 
     console.rule("[bold cyan]Stage 2/3 - Reverse-image search")
     if args.dry_run:
         console.print(Panel("DRY RUN - FIXTURE DATA - NOT A LIVE SEARCH", style="bold white on red"))
@@ -294,7 +294,7 @@ def main(argv: list[str] | None = None) -> int:
         Panel(f"[bold green]{chosen.url}[/]\n{chosen.title}", title="Selected match", border_style="green")
     )
 
-    # ---- Stage 3 -------------------------------------------------------
+    #  Stage 3 
     console.rule("[bold cyan]Stage 3/3 - Blockchain anchoring")
     anchor = None
     if args.skip_chain or args.dry_run:
@@ -307,7 +307,7 @@ def main(argv: list[str] | None = None) -> int:
             report["finished_at"] = utc_now_iso()
             write_report(report, args.output_dir)
             return EXIT_CONFIG
-        except Exception as exc:  # noqa: BLE001 - surface any RPC/signing error cleanly
+        except Exception as exc:  # noqa surface any RPC/signing error cleanly
             console.print(f"[red]Anchoring failed: {exc}[/]")
             report["anchor_error"] = str(exc)
             report["finished_at"] = utc_now_iso()
