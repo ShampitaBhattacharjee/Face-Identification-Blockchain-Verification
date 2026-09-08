@@ -1,4 +1,4 @@
-# Reproducible runtime including a compiled dlib (the slowest part of local setup).
+# Reproducible runtime including a compiled dlib 
 FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=1 \
